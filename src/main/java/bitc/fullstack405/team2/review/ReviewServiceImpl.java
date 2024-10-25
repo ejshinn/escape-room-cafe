@@ -81,4 +81,9 @@ public class ReviewServiceImpl implements ReviewService {
 
         reviewMapper.updateReview(review);
     }
+
+    @Override
+    public int findBoardIdxByResId(int resId) throws Exception {
+        return reviewMapper.findBoardIdxByResId(resId);
+    }
 }

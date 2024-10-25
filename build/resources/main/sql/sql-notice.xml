@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitc.fullstack405.team2.notice.NoticeMapper">
+
+    <!-- 공지사항 목록 -->
+    <select id="selectNoticeList" resultType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT
+            n.notice_id, n.category, n.title, n.notice_image, n.createdAt,
+            n.start_date, n.end_date, n.hit_cnt,
+            CASE
+                WHEN c.name IS NOT NULL THEN c.name
+                ELSE '전체'
+            END AS name
+        FROM
+            notice n
+            LEFT JOIN
+            cafe c
+        ON
+            n.cafe_id = c.cafe_id
+        WHERE
+            n.deleted_yn = 'N'
+        ORDER BY
+            n.notice_id DESC
+    </select>
+
+    <!-- 공지사항 게시물 상세, 수정 화면 -->
+    <select id="selectNoticeDetail" parameterType="int" resultType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT
+            n.notice_id, n.category, n.title, n.notice_image, n.createdAt, n.hit_cnt, n.start_date, n.end_date,
+            CASE
+                WHEN c.name IS NOT NULL THEN c.name
+                ELSE '전체'
+            END AS name
+        FROM
+            notice n
+            LEFT JOIN
+            cafe c
+        ON
+            n.cafe_id = c.cafe_id
+        WHERE
+            n.notice_id = #{noticeId}
+        AND
+            n.deleted_yn = 'N'
+    </select>
+
+    <!-- cafe_id 조회 -->
+    <select id="getCafeIdByName" parameterType="String" resultType="int">
+        SELECT
+            cafe_id
+        FROM
+            cafe
+        WHERE
+            name = #{name}
+    </select>
+
+    <!-- 공지사항 게시글 등록 -->
+    <insert id="insertNotice" parameterType="bitc.fullstack405.team2.notice.NoticeDTO">
+        INSERT INTO notice
+            (category, cafe_id, title, createdAt, start_date, end_date, notice_image)
+        VALUES
+            (#{category},
+            CASE
+                WHEN #{cafeId} = 0 THEN NULL
+                ELSE #{cafeId}
+            END,
+            #{title},
+            now(),
+            NULLIF(#{startDate}, ''),
+            NULLIF(#{endDate}, ''),
+            #{noticeImage})
+    </insert>
+
+    <!-- 공지사항 게시글 조회수 증가 -->
+    <update id="updateHitCount" parameterType = "int">
+        UPDATE
+            notice
+        SET
+            hit_cnt = hit_cnt + 1
+        WHERE
+            notice_id = #{noticeId}
+    </update>
+
+    <!-- 공지사항 게시글 삭제 -->
+    <delete id="deleteNotice" parameterType="int">
+        UPDATE
+            notice
+        SET
+            deleted_yn = 'Y', updatedAt = now()
+        WHERE
+            notice_id = ${noticeId}
+    </delete>
+
+    <!-- 공지사항 게시글 수정 -->
+    <update id="updateNotice" parameterType="bitc.fullstack405.team2.notice.NoticeDTO">
+        UPDATE
+            notice
+        SET
+            category = #{category},
+            cafe_id =
+            <if test="cafeId == 0">
+                NULL
+            </if>
+            <if test="cafeId != 0">
+                #{cafeId}
+            </if>,
+            title = #{title}, updatedAt = now(),
+            start_date = NULLIF(#{startDate}, ''), end_date = NULLIF(#{endDate}, ''), notice_image = #{noticeImage}
+        WHERE
+            notice_id = #{noticeId}
+    </update>
+
+    <!-- notice 게시판에서 현재 게시물 ID보다 작은 ID를 가진 게시물 중에서 가장 최신 게시물 조회 -->
+    <select id="findPreviousPost" parameterType="int" resultType="int">
+        SELECT IFNULL(
+            (SELECT notice_id
+            FROM
+                notice
+            WHERE
+                notice_id <![CDATA[>]]> #{noticeId}
+            AND
+                deleted_yn = 'N'
+            ORDER BY
+                notice_id DESC
+        LIMIT 1),
+        0
+        ) AS notice_id
+    </select>
+
+    <!-- notice 게시판에서 현재 게시물 ID보다 큰 ID를 가진 게시물 중에서 가장 오래된 게시물 조회 -->
+    <select id="findNextPost" parameterType="int" resultType="int">
+        SELECT IFNULL(
+            (SELECT notice_id
+            FROM
+                notice
+            WHERE
+                notice_id <![CDATA[<]]> #{noticeId}
+            AND
+                deleted_yn = 'N'
+            ORDER BY
+                notice_id DESC
+            LIMIT 1),
+            0
+        ) AS notice_id
+    </select>
+
+    <!-- FAQ 데이터 가져오기 -->
+    <select id="selectFAQ" parameterType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT
+            faq_id, title, content
+        FROM
+            faq
+    </select>
+</mapper>

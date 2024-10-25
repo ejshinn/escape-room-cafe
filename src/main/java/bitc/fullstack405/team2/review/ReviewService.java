@@ -16,4 +16,6 @@ public interface ReviewService {
     void deleteReview(int boardIdx) throws Exception;
 
     void updateReview(ReviewDTO review, MultipartFile uploadFile) throws Exception;
+
+    int findBoardIdxByResId(int resId) throws Exception;
 }

@@ -18,4 +18,6 @@ public interface ReviewMapper {
     void deleteReview(int boardIdx) throws Exception;
 
     void updateReview(ReviewDTO review) throws Exception;
+
+    int findBoardIdxByResId(int resId) throws Exception;
 }

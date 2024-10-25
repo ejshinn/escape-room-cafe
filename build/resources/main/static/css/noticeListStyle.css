@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.gothic-a1-regular {
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.btn-faq, .btn-notice {
+    border: 1px solid black;
+    width: 158px;
+    border-radius: 0;
+}
+
+.btn-faq:hover, .btn-notice:hover {
+    border: 1px solid black;
+    background-color: #ff6e27 !important;
+}
+
+.btn-notice {
+    background-color: #ff6e27;
+}
+
+.text-faq {
+    color: black;
+}
+
+.text-faq:hover {
+    color: white;
+}
+
+.page-link {
+    color: black;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #ff6e27;
+    border-color: #ff6e27;
+}
+
+.page-link:hover {
+    color: black;
+}
+
+.category {
+    width: 8%;
+    height: 80px;
+    font-size: small;
+}
+
+.title {
+    height: 80px;
+}
+
+.date {
+    height: 80px;
+    width: 20%;
+}
+
+.title a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}

@@ -39,18 +39,6 @@ public class LocaResController {
     return mv;
   }
 
-//  @GetMapping("reservation/{cafeName}/{cafeIdx}/{date}")
-//  public String selectDate1(@PathVariable(name = "date") String date){
-//    System.out.println(date);
-//    return date;
-//  }
-
-//  @GetMapping("reservation/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
-//  public String selectDate2(@PathVariable(name = "date") String date){
-//
-//   return date;
-//  }
-
   // 예약 정보 입력 페이지로 이동
   @RequestMapping("reservation/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
   public ModelAndView CafeResInfo(@PathVariable("cafeIdx") int cafeIdx, @PathVariable("themeIdx") int themeIdx, @PathVariable("time") int time, @PathVariable("date") String date, HttpServletRequest req) throws Exception{

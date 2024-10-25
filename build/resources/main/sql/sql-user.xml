@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitc.fullstack405.team2.user.UserMapper">
+
+    <!-- 회원가입 시 아이디 중복 체크 -->
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT
+            count(*) as cnt
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="insertUser" parameterType="bitc.fullstack405.team2.user.UserDTO">
+        INSERT INTO user
+            (user_id, user_pw, user_name, email, gender, age, mobile_number, nickname)
+        VALUES
+            (#{userId}, #{userPw}, #{userName}, #{email}, #{gender}, #{age}, #{mobileNumber}, #{nickname})
+    </insert>
+
+    <!-- 사용자 로그인 여부 확인 -->
+    <select id="isUserInfo" parameterType="map" resultType="int">
+        SELECT
+            count(*) as cnt
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+        AND
+            user_pw = #{userPw}
+    </select>
+
+    <!-- 사용자 정보 가져오기 -->
+    <select id="getUserInfo" parameterType="String" resultType="bitc.fullstack405.team2.user.UserDTO">
+        SELECT
+            user_id, user_pw, user_name, email, gender, age, mobile_number, nickname, point, admin_ck
+        FROM
+            user
+        WHERE
+            user_id = #{userId}
+    </select>
+
+    <!-- 사용자 포인트 700 증가 -->
+    <update id="updateUserPoints700" parameterType="java.lang.String">
+        UPDATE
+            user
+        SET
+            point = point + 700
+        WHERE
+            user_id = #{userId}
+    </update>
+
+    <!-- 사용자 포인트 300 증가 -->
+    <update id="updateUserPoints300" parameterType="java.lang.String">
+        UPDATE
+            user
+        SET
+            point = point + 300
+        WHERE
+            user_id = #{userId}
+    </update>
+</mapper>

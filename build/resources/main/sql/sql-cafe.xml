@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitc.fullstack405.team2.PopCafe.CafeMapper">
+    <select id="selectCafe" resultType="bitc.fullstack405.team2.PopCafe.CafeDTO" parameterType="int">
+        select
+            name, phone, address, sales_times, reservation_open_times
+        from
+            cafe
+        where
+            cafe_id = #{cafeId}
+    </select>
+
+    <select id="selectCafeList" resultType="bitc.fullstack405.team2.PopCafe.CafeDTO" parameterType="int">
+        select
+            cafe_id, name, phone, address, cafe_img, sales_times,reservation_open_times
+        from
+            cafe
+    </select>
+
+</mapper>

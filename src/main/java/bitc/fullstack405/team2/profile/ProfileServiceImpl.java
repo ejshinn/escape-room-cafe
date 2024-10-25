@@ -32,11 +32,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileDTO selectProfileDetail(String userId) throws Exception {
-        return profileMapper.selectProfileDetail(userId);
-    }
-
-    @Override
     public ProfileDTO selectProfileUpdate(String userId) throws Exception {
         return profileMapper.selectProfileUpdate(userId);
     }

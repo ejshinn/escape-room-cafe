@@ -16,4 +16,5 @@ public class ReviewDTO {
     private int commThemeIdx;
     private int hitCnt;
     private String cafeName;
+    private int resId;
 }

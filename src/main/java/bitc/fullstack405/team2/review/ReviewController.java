@@ -1,5 +1,7 @@
 package bitc.fullstack405.team2.review;
 
+import bitc.fullstack405.team2.cafeResrvation.ResDTO;
+import bitc.fullstack405.team2.cafeResrvation.ResService;
 import bitc.fullstack405.team2.mainThemePop.ThemeDTO;
 import bitc.fullstack405.team2.mainThemePop.ThemeService;
 import bitc.fullstack405.team2.notice.NoticeService;
@@ -25,6 +27,9 @@ public class ReviewController {
     @Autowired
     private ThemeService themeService;
 
+    @Autowired
+    private ResService resService;
+
     // review 게시판 목록 출력(페이징)
     @GetMapping("/review")
     public ModelAndView selectReviewList(@RequestParam(required = false, defaultValue = "1", value = "pageNum") int pageNum) throws Exception {
@@ -40,36 +45,48 @@ public class ReviewController {
         return mv;
     }
 
-    // review 게시물 상세
-    @GetMapping("/review/{boardIdx}")
-    public ModelAndView selectNoticeDetail(@PathVariable("boardIdx") int boardIdx) throws Exception {
-        reviewService.updateHitCount(boardIdx);
+    private ModelAndView getReviewDetailModelAndView(int boardIdx) throws Exception {
+        reviewService.updateHitCount(boardIdx); // 조회수 업데이트
 
         ModelAndView mv = new ModelAndView("review/reviewDetail");
 
-        ReviewDTO review = reviewService.selectReviewDetail(boardIdx); // 현재 게시물 조회
+        ReviewDTO review = reviewService.selectReviewDetail(boardIdx); // 리뷰 상세 조회
 
         mv.addObject("review", review);
 
         return mv;
     }
 
+    // 마이페이지 -> review 게시물 상세
+    @GetMapping("/mypage/review/{resId}")
+    public ModelAndView selectMyPageToReview(@PathVariable("resId") int resId) throws Exception {
+        int boardIdx = reviewService.findBoardIdxByResId(resId); // resId로 boardIdx 조회
+
+        return getReviewDetailModelAndView(boardIdx);
+    }
+
+    // review 게시물 상세
+    @GetMapping("/review/{boardIdx}")
+    public ModelAndView selectReviewDetail(@PathVariable("boardIdx") int boardIdx) throws Exception {
+        return getReviewDetailModelAndView(boardIdx);
+    }
+
     // review 게시글 작성(view)
-    @GetMapping("/review/write")
-    public String reviewWrite() throws Exception {
-        return "review/reviewWrite";
+    @GetMapping("/review/write/{resId}")
+    public ModelAndView reviewWrite(@PathVariable("resId") int resId) throws Exception {
+        ModelAndView mv = new ModelAndView("review/reviewWrite");
+
+        ResDTO reservation = resService.selectReservation(resId);
+
+        mv.addObject("reservation", reservation);
+        return mv;
     }
 
     // review 게시글 작성(내부 처리)
     @PostMapping("/review/write")
     public String reviewWrite(ReviewDTO review, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
-
-        int cafeId = noticeService.getCafeIdByName(review.getCafeName());
-
-        // cafeId를 review 객체에 설정
-        review.setCafeId(cafeId);
-
         reviewService.insertReview(review, uploadFile);
+        resService.updateReviewStatusY(review.getResId());
         return "redirect:/review";
     }
 
@@ -77,7 +94,7 @@ public class ReviewController {
     @DeleteMapping("/review/{boardIdx}")
     public String deleteReview(int boardIdx) throws Exception {
         reviewService.deleteReview(boardIdx);
-
+        resService.updateReviewStatusN(boardIdx);
         return "redirect:/review";
     }
 

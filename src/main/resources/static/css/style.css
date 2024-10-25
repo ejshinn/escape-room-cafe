@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.btn-orange{
+    background-color: #ff6e27;
+    color: white;
+}
+
+.btn-orange:hover{
+    background-color: #ff6e27;
+    color: white;
+}
+
+.btn-list {
+    width: 130px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    background-color: #ff6e27;
+    color: white;
+}
+
+.btn-edit {
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+}
+
+.btn-delete {
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+}
+
+boardImg {
+    max-width: 100%;
+    height: 40%;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.btn-orange-ok {
+    background-color: #ff6e27;
+    color: white;
+    border: none;
+}
+
+.btn-orange-ok:hover {
+    background-color: #e65c00;
+    color: white;
+}
+
+.main-header {
+    background-color: #ff6e27;
+    color: white;
+    padding: 40px 0;
+    border-radius: 0.5rem;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.main-header h1 {
+    margin: 0;
+}
+
+.do-hyeon-regular {
+    font-family: "Do Hyeon", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.form-section {
+    margin-top: 4%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textarea-review-detail {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.container-review-detail {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    height: 80px;
+}
+
+.title a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.date {
+    height: 80px;
+    width: 20%;
+}
+
+.category {
+    width: 8%;
+    height: 80px;
+    font-size: small;
+}
+
+.page-link {
+    color: black;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #ff6e27;
+    border-color: #ff6e27;
+}
+
+.page-link:hover {
+    color: black;
+}
+
+.text-faq {
+    color: black;
+}
+
+.text-faq:hover {
+    color: white;
+}
+
+.btn-faq, .btn-notice {
+    border: 1px solid black;
+    width: 158px;
+    border-radius: 0;
+}
+
+.btn-faq:hover, .btn-notice:hover {
+    border: 1px solid black;
+    background-color: #ff6e27 !important;
+}
+
+.gothic-a1-regular {
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.text-notice {
+    color: black;
+}
+
+.text-notice:hover {
+    color: white;
+}
+
+.accordion-button {
+    font-size: 1.1rem;
+    font-weight: bold;
+    height: 80px;
+    outline: none;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.accordion-body {
+    background-color: #f9f9f9;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #ff6e27;
+    color: white;
+    font-weight: bold;
+}
+
+.accordion-body {
+    background-color: #f9f9f9;
+    padding: 15px;
+    position: relative;
+}
+.answer-container {
+    display: flex;
+    align-items: flex-start;
+}
+.answer-marker {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6e27;
+    margin-right: 10px;
+}
+
+.green-text {
+    color: #69bc6b;
+    margin-right: 5px;
+}
+
+.accordion-item {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+}

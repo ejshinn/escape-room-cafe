@@ -13,6 +13,8 @@ public class ProfileDTO {
   private String mobileNumber;
   private String nickName;
   private int point;
+  private String reviewYn;
+  private int resId;
 
   private String serialNum;
   private String cafeName;
