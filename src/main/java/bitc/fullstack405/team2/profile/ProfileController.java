@@ -24,6 +24,12 @@ public class ProfileController {
         ModelAndView mv = new ModelAndView("profile/profilemain");
 
         HttpSession session = req.getSession();
+
+        if(session.getAttribute("userId") == null) {
+            mv = new ModelAndView("redirect:/user/login");
+            return mv;
+        }
+
         String userId = (String) session.getAttribute("userId");
 
         ProfileDTO profile = profileService.selectProfile(userId);
