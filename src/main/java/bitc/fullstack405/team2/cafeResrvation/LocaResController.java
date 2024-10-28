@@ -52,7 +52,7 @@ public class LocaResController {
     HttpSession session = req.getSession();
     String userId = (String)session.getAttribute("userId");
     if (userId == null){
-      return new ModelAndView("/user/login");
+      return new ModelAndView("user/login");
     }
 
     UserDTO user = userService.getUserInfo(userId);

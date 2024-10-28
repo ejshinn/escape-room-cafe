@@ -120,49 +120,96 @@
             let theme4part2 = document.getElementById("theme4part2").getAttribute('data-value');
             let theme4part3 = document.getElementById("theme4part3").getAttribute('data-value');
 
-
             // 1번테마 시간 선택 시 날짜 정보 가지고 이동
             $("#theme1part1").click(function (){
-                document.getElementById("theme1part1").setAttribute("href","/reservation/busanred/6/9/10/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme1part1").setAttribute("href", "/reservation/busanred/6/9/10/" + dateParam);
+                }
             });
             $("#theme1part2").click(function (){
-                document.getElementById("theme1part2").setAttribute("href","/reservation/busanred/6/9/15/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme1part2").setAttribute("href", "/reservation/busanred/6/9/15/" + dateParam);
+                }
             });
             $("#theme1part3").click(function (){
-                document.getElementById("theme1part3").setAttribute("href","/reservation/busanred/6/9/20/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme1part3").setAttribute("href", "/reservation/busanred/6/9/20/" + dateParam);
+                }
             });
 
             // 2번테마 시간 선택 시 날짜 정보 가지고 이동
             $("#theme2part1").click(function (){
-                document.getElementById("theme2part1").setAttribute("href","/reservation/busanred/6/10/10/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme2part1").setAttribute("href", "/reservation/busanred/6/10/10/" + dateParam);
+                }
             });
             $("#theme2part2").click(function (){
-                document.getElementById("theme2part2").setAttribute("href","/reservation/busanred/6/10/15/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme2part2").setAttribute("href", "/reservation/busanred/6/10/15/" + dateParam);
+                }
             });
             $("#theme2part3").click(function (){
-                document.getElementById("theme2part3").setAttribute("href","/reservation/busanred/6/10/20/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme2part3").setAttribute("href", "/reservation/busanred/6/10/20/" + dateParam);
+                }
             });
 
             // 3번테마 시간 선택 시 날짜 정보 가지고 이동
             $("#theme3part1").click(function (){
-                document.getElementById("theme3part1").setAttribute("href","/reservation/busanred/6/11/10/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme3part1").setAttribute("href", "/reservation/busanred/6/11/10/" + dateParam);
+                }
             });
             $("#theme3part2").click(function (){
-                document.getElementById("theme3part2").setAttribute("href","/reservation/busanred/6/11/15/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme3part2").setAttribute("href", "/reservation/busanred/6/11/15/" + dateParam);
+                }
             });
             $("#theme3part3").click(function (){
-                document.getElementById("theme3part3").setAttribute("href","/reservation/busanred/6/11/20/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme3part3").setAttribute("href", "/reservation/busanred/6/11/20/" + dateParam);
+                }
             });
 
             // 4번테마 시간 선택 시 날짜 정보 가지고 이동
             $("#theme4part1").click(function (){
-                document.getElementById("theme4part1").setAttribute("href","/reservation/busanred/6/12/10/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme4part1").setAttribute("href", "/reservation/busanred/6/12/10/" + dateParam);
+                }
             });
             $("#theme4part2").click(function (){
-                document.getElementById("theme4part2").setAttribute("href","/reservation/busanred/6/12/15/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme4part2").setAttribute("href", "/reservation/busanred/6/12/15/" + dateParam);
+                }
             });
             $("#theme4part3").click(function (){
-                document.getElementById("theme4part3").setAttribute("href","/reservation/busanred/6/12/20/"+dateParam);
+                if(dateParam == null) {
+                    alert('날짜를 고른 후 선택 버튼을 눌러주세요.');
+                } else {
+                    document.getElementById("theme4part3").setAttribute("href", "/reservation/busanred/6/12/20/" + dateParam);
+                }
             });
 
 
@@ -245,7 +292,7 @@
             // url:현재 전체 주소, 문자열로 바꾼 주소 앞에서 한개 잘라오기
             // http 부터 시작
             console.log(url);
-            let cafeid = url.slice(43,44);
+            let cafeid = 6;
             console.log(cafeid);
 
             $.ajax({
@@ -345,6 +392,27 @@
                 }
             });
         });
+
+        const dateInput = document.getElementById('date');
+        const timeOptions = document.querySelectorAll('.time-option');
+
+        dateInput.addEventListener('change', function() {
+            // 날짜를 선택했으면 시간 선택 링크 활성화
+            if (this.value) {
+                timeOptions.forEach(option => {
+                    option.classList.remove('disabled');
+                    option.onclick = function() {
+                        // 선택된 시간에 대한 추가 처리 (예: 저장, 표시 등)
+                        console.log("선택한 시간:", this.dataset.value);
+                    };
+                });
+            } else {
+                timeOptions.forEach(option => {
+                    option.classList.add('disabled');
+                    option.onclick = null; // 클릭 이벤트 제거
+                });
+            }
+        });
     </script>
 
 </head>
@@ -392,7 +460,7 @@
                     <div class=" col-md-9">
                         <div class="container">
                             <div class="row mt-2">
-                                <form name="frm" action="/reservation/busanred/6" method="get" >
+                                <form name="frm" action="/reservation/busanred/6" method="get">
                                     <div class="col-4 d-flex">
                                         <input class="form-control me-2" type="date" name="date" id="date" min="" value="">
                                         <button class="btn btn-orange" type="submit" id="date-select" style="width: 80px;">선택</button>
@@ -480,7 +548,7 @@
 <nav>
     <a id="quickmenu2" href="#">top</a>
 </nav>
-<footer th:replace="~{/layout/footer :: footer}"></footer>
+<footer th:replace="~{layout/footer :: footer}"></footer>
 
 </body>
 

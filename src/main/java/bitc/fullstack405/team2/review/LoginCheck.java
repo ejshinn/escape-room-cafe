@@ -12,7 +12,7 @@ public class LoginCheck implements HandlerInterceptor {
         // 현재 연결의 세션 정보 가져옴
         HttpSession session = req.getSession();
 
-        System.out.println("\n =============== Interceptor 동작 =============== \n");
+        //System.out.println("\n =============== Interceptor 동작 =============== \n");
 
         // 세션에 저장된 정보 중 사용자 ID 정보를 가져옴, 세션에 저장 시 Object 타입으로 저장되므로 강제 타입 변환이 필요함
         String userId = (String) session.getAttribute("userId");
@@ -21,9 +21,9 @@ public class LoginCheck implements HandlerInterceptor {
         // 세션에서 가져온 정보가 존재하는지 확인
         if (userId == null || userId.equals("")) {
             // 세션에 저장된 정보가 없을 경우
-            System.out.println("\n ********** interceptor ********** \n");
-            System.out.println("비로그인 상태");
-            System.out.println("User ID : " + (String) session.getAttribute("userId"));
+//            System.out.println("\n ********** interceptor ********** \n");
+//            System.out.println("비로그인 상태");
+//            System.out.println("User ID : " + (String) session.getAttribute("userId"));
 
             // 로그인 페이지로 리다이렉트
             resp.sendRedirect("/user/login");
@@ -32,9 +32,9 @@ public class LoginCheck implements HandlerInterceptor {
             return false;
         } else {
             // 세션에 저장된 정보가 있을 경우
-            System.out.println("\n ********** interceptor *********** \n");
-            System.out.println("로그인 상태");
-            System.out.println("User ID : " + (String) session.getAttribute("userId"));
+//            System.out.println("\n ********** interceptor *********** \n");
+//            System.out.println("로그인 상태");
+//            System.out.println("User ID : " + (String) session.getAttribute("userId"));
 
             // 세션 유지 시간 설정
             session.setMaxInactiveInterval(60 * 60 * 1);

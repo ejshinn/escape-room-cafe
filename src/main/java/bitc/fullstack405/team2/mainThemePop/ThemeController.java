@@ -30,7 +30,7 @@ public class ThemeController {
     // 그냥 리뷰 함수
     List<ThemeCafeDTO> reviewList = themeService.selectReviewList();
     mv.addObject("reviewList", reviewList);
-    System.out.println("리뷰 리스트 불러오기 성공");
+    //System.out.println("리뷰 리스트 불러오기 성공");
 
     return mv;
   }
