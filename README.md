@@ -37,3 +37,6 @@
 
 
 ## ▶️ 시연 영상
+https://github.com/user-attachments/assets/5fd9afe1-7848-4f87-8916-f22163e03df0
+
+
