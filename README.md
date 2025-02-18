@@ -14,7 +14,7 @@
 * Frontend: HTML, CSS, JavaScript, jQuery, Ajax, Thymeleaf
 * Backend: Spring Boot, Java
 * Database: MySQL
-* ORM: MyBatis
+* SQL Mapper: MyBatis
 * Version Control: Git
 
 ## 📌 주요 기능
